@@ -4,6 +4,7 @@
 
 
 #include <iostream>
+#include <memory>
 #include <ostream>
 #include <string>
 
@@ -24,17 +25,21 @@ public:
 
 
 int main() {
-    Player* player = new Player("player1", 100);
-    player->takeDamage(10);
-
-    std::cout << player->health << std::endl;
-    std::cout << player->name << std::endl;
+    // Player* player = new Player("player1", 100);
+    // player->takeDamage(10);
+    //
+    // std::cout << player->health << std::endl;
+    // std::cout << player->name << std::endl;
 
     // This frees up the space in heap and called destructor of the ibejct
-    delete player;
-    player = nullptr;
+    // delete player;
+    // player = nullptr;
 
     // This should print zero assuring that the pointer no longer points to any other memory address.
 
-    std::cout << player << std::endl;
+    // std::cout << player << std::endl;
+    //
+    std::unique_ptr<Player> ptr = std::make_unique<Player>("player2", 10);
+    std::cout << ptr->name << std::endl;
+    std::cout << ptr->health << std::endl;
 }
